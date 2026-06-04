@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>卫星轨道 3D 可视化</title>
+    <base href="/" />
+
+    <!-- Cesium.js CSS（本地引入） -->
+    <link rel="stylesheet" href="lib/cesium/Widgets/widgets.css" />
+
+    <!-- 项目自定义布局样式 -->
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+
+<body>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+
+    <!-- satellite.js 轨道递推库（本地引入，必须在 cesiumBridge.js 之前加载） -->
+    <script src="lib/satellite.js/satellite.min.js"></script>
+
+    <!-- Cesium.js（本地引入） -->
+    <script src="lib/cesium/Cesium.js"></script>
+
+    <!-- 自定义 JS 桥接模块（依赖 satellite.js 和 Cesium.js） -->
+    <script src="js/orbitPropagator.js"></script>
+    <script src="js/cesiumBridge.js"></script>
+
+    <script src="_framework/blazor.webassembly.66stpp682q.js"></script>
+</body>
+
+</html>

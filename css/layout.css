@@ -1,0 +1,190 @@
+/**
+ * layout.css — 页面整体 Flex 弹性布局样式
+ * 左侧控制面板 + 右侧 Cesium 地图 的左右分栏布局
+ */
+
+/* ==================== 页面基础重置 ==================== */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    font-size: 14px;
+    color: #e0e0e0;
+    background-color: #1a1a2e;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+}
+
+/* ==================== 主布局：Flex 左右分栏 ==================== */
+.page {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;      /* 确保子元素等高 */
+    width: 100%;
+    height: 100%;
+}
+
+/* ==================== 左侧：控制面板 ==================== */
+.sidebar {
+    flex: 0 0 380px;           /* 固定宽度 380px，不伸缩 */
+    display: flex;
+    flex-direction: column;    /* 面板内元素纵向排列 */
+    background-color: #16213e;
+    border-right: 2px solid #0f3460;
+    overflow-y: auto;          /* 内容超出时纵向滚动 */
+    overflow-x: hidden;
+    padding: 16px;
+    gap: 16px;                 /* 子元素间距 */
+    box-sizing: border-box;
+}
+
+/* ==================== 右侧：Cesium 地图容器 ==================== */
+main {
+    flex: 1 1 auto;            /* 占据剩余全部空间 */
+    position: relative;        /* 为子元素绝对定位提供锚点 */
+    min-width: 0;              /* 防止 Flex 溢出 */
+    min-height: 0;             /* 防止被 flex 子元素撑开 */
+    height: 100%;              /* 显式继承父高度 */
+}
+
+/* Cesium Viewer 容器：四边绝对拉伸，精确填满父元素 */
+.cesium-viewer-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+/* ==================== 通用组件样式 ==================== */
+.panel-section {
+    background-color: #1a1a3e;
+    border: 1px solid #0f3460;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.panel-section h3 {
+    margin: 0 0 10px 0;
+    font-size: 15px;
+    color: #e94560;
+    border-bottom: 1px solid #0f3460;
+    padding-bottom: 6px;
+}
+
+/* ==================== 按钮样式 ==================== */
+.btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+
+.btn-primary {
+    background-color: #e94560;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #c73654;
+}
+
+.btn-secondary {
+    background-color: #0f3460;
+    color: #e0e0e0;
+    border: 1px solid #1a508b;
+}
+.btn-secondary:hover {
+    background-color: #1a508b;
+}
+
+.btn-danger {
+    background-color: #444;
+    color: #e94560;
+    border: 1px solid #e94560;
+}
+.btn-danger:hover {
+    background-color: #e94560;
+    color: white;
+}
+
+/* ==================== 卫星列表样式 ==================== */
+.satellite-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.satellite-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 8px;
+    border-bottom: 1px solid #0f3460;
+    font-size: 13px;
+}
+
+.satellite-item:hover {
+    background-color: #0f3460;
+}
+
+.satellite-item .norad-id {
+    font-family: 'Consolas', monospace;
+    color: #888;
+    font-size: 11px;
+}
+
+/* ==================== 时间控件样式 ==================== */
+.time-control {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.time-control input[type="datetime-local"] {
+    padding: 6px 8px;
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+    border: 1px solid #0f3460;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/* ==================== 文件上传样式 ==================== */
+.file-upload-label {
+    cursor: pointer;
+    display: block;
+}
+
+.file-upload-area {
+    border: 2px dashed #0f3460;
+    border-radius: 6px;
+    padding: 16px;
+    text-align: center;
+    transition: border-color 0.2s;
+}
+
+.file-upload-area:hover {
+    border-color: #e94560;
+}
+
+/* ==================== 滚动条美化 ==================== */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #1a1a2e;
+}
+::-webkit-scrollbar-thumb {
+    background: #0f3460;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #1a508b;
+}
